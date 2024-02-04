@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -9,15 +9,16 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
-        libraries = with pkgs;[
+        libraries = with pkgs; [
           webkitgtk
           gtk3
           cairo
           gdk-pixbuf
           glib
           dbus
-          openssl_3
-          librsvg
+          openssl
+	  binutils
+
         ];
 
         packages = with pkgs; [
@@ -25,14 +26,12 @@
           wget
           pkg-config
           dbus
-          openssl_3
+          openssl
           glib
           gtk3
           libsoup
           webkitgtk
           librsvg
-          rustc
-          cargo
           rustup
         ];
       in
